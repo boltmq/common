@@ -70,7 +70,7 @@ func TestEncodeCommandCustomHeader(t *testing.T) {
 	tc.Ui32type = 106
 	tc.I64type = 107
 	tc.Ui64type = 108
-	tc.Stype = "jerrylou"
+	tc.Stype = "luoji"
 	tc.Btype = true
 
 	m := encodeCommandCustomHeader(tc)
@@ -187,7 +187,7 @@ func TestDecodeCommandCustomHeader(t *testing.T) {
 	extFields["Ui32type"] = "117"
 	extFields["Ui64type"] = "118"
 	extFields["Btype"] = "true"
-	extFields["Stype"] = "jerrylou"
+	extFields["Stype"] = "luoji"
 
 	tc := &testCommandCustomHeader{}
 	e := decodeCommandCustomHeader(extFields, tc)

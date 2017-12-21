@@ -1,3 +1,16 @@
+// Copyright 2017 luoji
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+//    http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 package protocol
 
 import (
@@ -12,7 +25,7 @@ import (
 )
 
 // RemotingCommand remoting command
-// Author: jerrylou, <gunsluo@gmail.com>
+// Author: luoji, <gunsluo@gmail.com>
 // Since: 2017-08-22
 type RemotingCommand struct {
 	Code         int32               `json:"code"`
@@ -22,7 +35,7 @@ type RemotingCommand struct {
 	Flag         int32               `json:"flag"`
 	Remark       string              `json:"remark"`
 	ExtFields    map[string]string   `json:"extFields"` // 请求拓展字段
-	CustomHeader CommandCustomHeader `json:"-"`         // 修改字段类型,"CustomHeader"字段不序列化 2017/8/24 Modify by jerrylou, <gunsluo@gmail.com>
+	CustomHeader CommandCustomHeader `json:"-"`         // 修改字段类型,"CustomHeader"字段不序列化 2017/8/24 Modify by luoji, <gunsluo@gmail.com>
 	Body         []byte              `json:"-"`         // body字段不会被Encode()并进行网络传输，仅仅在ToString()打印日志内部有序列化处理
 }
 
@@ -67,7 +80,7 @@ func CreateRequestCommand(code int32, customHeader ...CommandCustomHeader) *Remo
 	return cmd
 }
 
-// Author: jerrylou, <gunsluo@gmail.com>
+// Author: luoji, <gunsluo@gmail.com>
 // Since: 2017-08-22
 func (rc *RemotingCommand) setCMDVersion() {
 	if configVersion >= 0 {

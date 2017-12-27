@@ -22,28 +22,28 @@ import (
 // Author: tantexian, <tantexian@qq.com>
 // Since: 2017/8/7
 func Int32ToBytes(n int32) []byte {
-	bytesBuffer := bytes.NewBuffer([]byte{})
+	bytesBuffer := &bytes.Buffer{}
 	binary.Write(bytesBuffer, binary.BigEndian, n)
 	return bytesBuffer.Bytes()
 }
 
 // Int64ToBytes
 func Int64ToBytes(n int64) []byte {
-	bytesBuffer := bytes.NewBuffer([]byte{})
+	bytesBuffer := &bytes.Buffer{}
 	binary.Write(bytesBuffer, binary.BigEndian, n)
 	return bytesBuffer.Bytes()
 }
 
 // Int16ToBytes
 func Int16ToBytes(n int16) []byte {
-	bytesBuffer := bytes.NewBuffer([]byte{})
+	bytesBuffer := &bytes.Buffer{}
 	binary.Write(bytesBuffer, binary.BigEndian, n)
 	return bytesBuffer.Bytes()
 }
 
 // Int8ToBytes
 func Int8ToBytes(n int8) []byte {
-	bytesBuffer := bytes.NewBuffer([]byte{})
+	bytesBuffer := &bytes.Buffer{}
 	binary.Write(bytesBuffer, binary.BigEndian, n)
 	return bytesBuffer.Bytes()
 }

@@ -37,7 +37,7 @@ func NewWaitNotify() *WaitNotify {
 	}
 }
 
-func (wno *WaitNotify) wakeup(interval int64) {
+func (wno *WaitNotify) Wakeup(interval int64) {
 	wno.mutex.Lock()
 	defer wno.mutex.Unlock()
 
@@ -46,7 +46,7 @@ func (wno *WaitNotify) wakeup(interval int64) {
 	}
 }
 
-func (wno *WaitNotify) waitForRunning(interval int64) {
+func (wno *WaitNotify) WaitForRunning(interval int64) {
 	wno.mutex.Lock()
 	defer wno.mutex.Unlock()
 

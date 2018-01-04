@@ -206,11 +206,3 @@ func (msgExt *MessageExt) Encode() ([]byte, error) {
 
 	return buf.Bytes(), nil
 }
-
-func ParseTopicFilterType(sysFlag int32) TopicFilterType {
-	if (sysFlag & sysflag.MultiTagsFlag) == sysflag.MultiTagsFlag {
-		return MULTI_TAG
-	}
-
-	return SINGLE_TAG
-}

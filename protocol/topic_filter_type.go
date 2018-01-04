@@ -11,7 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package message
+package protocol
+
+import "github.com/boltmq/common/sysflag"
 
 // TopicFilterType Topic过滤方式，默认为单Tag过滤
 // Author gaoyanlei
@@ -33,4 +35,12 @@ func (tft TopicFilterType) String() string {
 	default:
 		return ""
 	}
+}
+
+func ParseTopicFilterType(sysFlag int32) TopicFilterType {
+	if (sysFlag & sysflag.MultiTagsFlag) == sysflag.MultiTagsFlag {
+		return MULTI_TAG
+	}
+
+	return SINGLE_TAG
 }

@@ -36,7 +36,7 @@ type RemotingCommand struct {
 	Remark       string              `json:"remark"`
 	ExtFields    map[string]string   `json:"extFields"` // 请求拓展字段
 	CustomHeader CommandCustomHeader `json:"-"`         // 修改字段类型,"CustomHeader"字段不序列化 2017/8/24 Modify by luoji, <gunsluo@gmail.com>
-	Body         []byte              `json:"-"`         // body字段不会被Encode()并进行网络传输，仅仅在ToString()打印日志内部有序列化处理
+	Body         []byte              `json:"-"`         // body字段不会被Encode()并进行网络传输
 }
 
 // CreateResponseCommand 只有通信层内部会调用，业务不会调用

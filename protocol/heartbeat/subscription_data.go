@@ -44,7 +44,7 @@ type SubscriptionDataPlus struct {
 }
 
 // String 格式化订阅信息结构体的内容
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/6
 func (sd *SubscriptionData) String() string {
 	if sd == nil {
@@ -55,7 +55,7 @@ func (sd *SubscriptionData) String() string {
 }
 
 // String 格式化订阅信息结构体的内容
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/6
 func (sdp *SubscriptionDataPlus) String() string {
 	if sdp == nil {

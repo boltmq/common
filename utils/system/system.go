@@ -17,11 +17,17 @@ import (
 	"bytes"
 	"os"
 	"os/exec"
+	"os/user"
 	"runtime"
 	"strings"
 )
 
 func Home() string {
+	homeDir, err := home()
+	if err == nil && homeDir != "" {
+		return homeDir
+	}
+
 	if runtime.GOOS == "windows" {
 		return WindowsHome()
 	}
@@ -55,4 +61,13 @@ func UnixHome() string {
 
 	result := strings.TrimSpace(stdout.String())
 	return result
+}
+
+func home() (string, error) {
+	user, err := user.Current()
+	if nil == err {
+		return user.HomeDir, nil
+	}
+
+	return "", err
 }

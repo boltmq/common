@@ -18,6 +18,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/boltmq/common/basis"
 	"github.com/boltmq/common/constant"
 )
 
@@ -26,19 +27,19 @@ const (
 	defaultWriteQueueNums = 16
 	separator             = " "
 	perm                  = constant.PERM_READ | constant.PERM_WRITE
-	topicFilterType       = TopicFilterType(SINGLE_TAG)
+	topicFilterType       = basis.TopicFilterType(basis.SINGLE_TAG)
 	topicSysFlag          = 0
 )
 
 type TopicConfig struct {
 	SEPARATOR      string
-	TopicName      string          `json:"topicName"`
-	ReadQueueNums  int32           `json:"readQueueNums"`
-	WriteQueueNums int32           `json:"writeQueueNums"`
-	Perm           int             `json:"perm"`
-	TpFilterType   TopicFilterType `json:"topicFilterType"`
-	TopicSysFlag   int             `json:"topicSysFlag"`
-	Order          bool            `json:"order"`
+	TopicName      string                `json:"topicName"`
+	ReadQueueNums  int32                 `json:"readQueueNums"`
+	WriteQueueNums int32                 `json:"writeQueueNums"`
+	Perm           int                   `json:"perm"`
+	TpFilterType   basis.TopicFilterType `json:"topicFilterType"`
+	TopicSysFlag   int                   `json:"topicSysFlag"`
+	Order          bool                  `json:"order"`
 }
 
 func NewTopicConfig(topicName string) *TopicConfig {
@@ -54,7 +55,7 @@ func NewTopicConfig(topicName string) *TopicConfig {
 	return topicConfig
 }
 
-func NewDefaultTopicConfig(topicName string, readQueueNums, writeQueueNums int32, perm int, filterType TopicFilterType) *TopicConfig {
+func NewDefaultTopicConfig(topicName string, readQueueNums, writeQueueNums int32, perm int, filterType basis.TopicFilterType) *TopicConfig {
 	topicConfig := &TopicConfig{
 		TopicName:      topicName,
 		WriteQueueNums: writeQueueNums,
@@ -67,7 +68,7 @@ func NewDefaultTopicConfig(topicName string, readQueueNums, writeQueueNums int32
 	return topicConfig
 }
 
-func NewCustomTopicConfig(topicName string, readQueueNums, writeQueueNums int32, topicSysFlag int, filterType ...TopicFilterType) *TopicConfig {
+func NewCustomTopicConfig(topicName string, readQueueNums, writeQueueNums int32, topicSysFlag int, filterType ...basis.TopicFilterType) *TopicConfig {
 	topicConfig := &TopicConfig{
 		TopicName:      topicName,
 		WriteQueueNums: writeQueueNums,
@@ -244,20 +245,20 @@ func (table *TopicConfigTable) ClearAndPutAll(topicConfigTable map[string]*Topic
 // Author gaoyanlei
 // Since 2017/8/11
 type TopicConfigSerializeWrapper struct {
-	TpConfigTable *TopicConfigTable `json:"topicConfigTable"`
-	DataVersion   *DataVersion      `json:"dataVersion"`
+	TpConfigTable *TopicConfigTable  `json:"topicConfigTable"`
+	DataVersion   *basis.DataVersion `json:"dataVersion"`
 	RemotingSerializable
 }
 
 // NewTopicConfigSerializeWrapper 格式化
 // Author: tianyuliang
 // Since: 2017/10/21
-func NewTopicConfigSerializeWrapper(dataVersion ...*DataVersion) *TopicConfigSerializeWrapper {
+func NewTopicConfigSerializeWrapper(dataVersion ...*basis.DataVersion) *TopicConfigSerializeWrapper {
 	topicConfigSerializeWrapper := &TopicConfigSerializeWrapper{
 		TpConfigTable: NewTopicConfigTable(),
 	}
 
-	topicConfigSerializeWrapper.DataVersion = NewDataVersion()
+	topicConfigSerializeWrapper.DataVersion = basis.NewDataVersion()
 	if dataVersion != nil && len(dataVersion) > 0 {
 		topicConfigSerializeWrapper.DataVersion = dataVersion[0]
 	}

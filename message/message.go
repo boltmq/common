@@ -37,45 +37,45 @@ func (msg *Message) ClearProperty(name string) {
 	delete(msg.Properties, name)
 }
 
-func (self *Message) PutProperty(name string, value string) {
-	if self.Properties == nil {
-		self.Properties = make(map[string]string)
+func (msg *Message) PutProperty(name string, value string) {
+	if msg.Properties == nil {
+		msg.Properties = make(map[string]string)
 	}
 
-	self.Properties[name] = value
+	msg.Properties[name] = value
 }
 
-func (self *Message) GetProperty(name string) string {
-	if self.Properties == nil {
-		self.Properties = make(map[string]string)
+func (msg *Message) GetProperty(name string) string {
+	if msg.Properties == nil {
+		msg.Properties = make(map[string]string)
 	}
-	return self.Properties[name]
+	return msg.Properties[name]
 }
 
-func (self *Message) SetTags(tags string) {
-	self.PutProperty(PROPERTY_TAGS, tags)
+func (msg *Message) SetTags(tags string) {
+	msg.PutProperty(PROPERTY_TAGS, tags)
 }
 
-func (self *Message) GetTags() string {
-	return self.GetProperty(PROPERTY_TAGS)
+func (msg *Message) GetTags() string {
+	return msg.GetProperty(PROPERTY_TAGS)
 }
 
-func (self *Message) GetOriginMessageID() string {
-	return self.GetProperty(PROPERTY_ORIGIN_MESSAGE_ID)
+func (msg *Message) GetOriginMessageID() string {
+	return msg.GetProperty(PROPERTY_ORIGIN_MESSAGE_ID)
 }
 
-func (self *Message) SetWaitStoreMsgOK(waitStoreMsgOK bool) {
-	self.PutProperty(PROPERTY_WAIT_STORE_MSG_OK, strconv.FormatBool(waitStoreMsgOK))
+func (msg *Message) SetWaitStoreMsgOK(waitStoreMsgOK bool) {
+	msg.PutProperty(PROPERTY_WAIT_STORE_MSG_OK, strconv.FormatBool(waitStoreMsgOK))
 }
 
-func (self *Message) SetDelayTimeLevel(level int) {
-	self.PutProperty(PROPERTY_DELAY_TIME_LEVEL, strconv.Itoa(level))
+func (msg *Message) SetDelayTimeLevel(level int) {
+	msg.PutProperty(PROPERTY_DELAY_TIME_LEVEL, strconv.Itoa(level))
 }
 
-func (self *Message) GetKeys() string {
-	return self.GetProperty(PROPERTY_KEYS)
+func (msg *Message) GetKeys() string {
+	return msg.GetProperty(PROPERTY_KEYS)
 }
 
-func (self *Message) SetKeys(keys string) {
-	self.PutProperty(PROPERTY_KEYS, keys)
+func (msg *Message) SetKeys(keys string) {
+	msg.PutProperty(PROPERTY_KEYS, keys)
 }

@@ -13,7 +13,10 @@
 // limitations under the License.
 package basis
 
-import "github.com/boltmq/common/sysflag"
+import (
+	"github.com/boltmq/common/sysflag"
+	"github.com/boltmq/common/utils/codec"
+)
 
 // TopicFilterType Topic过滤方式，默认为单Tag过滤
 // Author gaoyanlei
@@ -43,4 +46,12 @@ func ParseTopicFilterType(sysFlag int32) TopicFilterType {
 	}
 
 	return SINGLE_TAG
+}
+
+func TagsString2tagsCode(filterType TopicFilterType, tags string) int64 {
+	if tags == "" || len(tags) == 0 {
+		return 0
+	}
+
+	return codec.HashCode(tags)
 }

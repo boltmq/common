@@ -11,15 +11,20 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package basis
+package protocol
 
-const (
-	MASTER_ID                = 0
-	SELF_TEST_TOPIC          = "SELF_TEST_TOPIC"
-	DEFAULT_TOPIC            = "MY_DEFAULT_TOPIC"
-	BENCHMARK_TOPIC          = "BenchmarkTest"
-	OFFSET_MOVED_EVENT       = "OFFSET_MOVED_EVENT"
-	TOOLS_CONSUMER_GROUP     = "TOOLS_CONSUMER"
-	FILTERSRV_CONSUMER_GROUP = "FILTERSRV_CONSUMER"
-	SELF_TEST_CONSUMER_GROUP = "SELF_TEST_C_GROUP"
+import (
+	"github.com/boltmq/common/message"
 )
+
+type OffsetMovedEvent struct {
+	ConsumerGroup string               `json:"consumerGroup"` // 消费组名称
+	MessageQueue  message.MessageQueue `json:"messageQueue"`  // 消息Queue
+	OffsetRequest int64                `json:"offsetRequest"` // 客户端请求的Offset
+	OffsetNew     int64                `json:"offsetNew"`     // Broker要求从这个新的Offset开始消费
+	RemotingSerializable
+}
+
+func NewOffsetMovedEvent() *OffsetMovedEvent {
+	return &OffsetMovedEvent{}
+}

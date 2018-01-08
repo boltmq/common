@@ -21,3 +21,37 @@ import "time"
 func CurrentTimeMillis() int64 {
 	return time.Now().UnixNano() / 1000000
 }
+
+// ComputNextMorningTimeMillis 下一整点天（时、分、秒、毫秒置为0）
+// Author rongzhihong
+// Since 2017/9/5
+func ComputNextMorningTimeMillis() int64 {
+	currentTime := time.Now()
+	nextMorning := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day()+1, 0, 0, 0, 0, currentTime.Location())
+	nextMorningTimeMillis := nextMorning.UnixNano() / 1000000
+	return nextMorningTimeMillis
+}
+
+// ComputNextMinutesTimeMillis 下一整点分钟（秒、毫秒置为0）
+// Author rongzhihong
+// Since 2017/9/5
+func ComputNextMinutesTimeMillis() int64 {
+	currentTime := time.Now()
+	nextMorning := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(),
+		currentTime.Hour(), currentTime.Minute()+1, 0, 0, currentTime.Location())
+
+	nextMorningTimeMillis := nextMorning.UnixNano() / 1000000
+	return nextMorningTimeMillis
+}
+
+// ComputNextHourTimeMillis 下一整点小时（分、秒、毫秒置为0）
+// Author rongzhihong
+// Since 2017/9/5
+func ComputNextHourTimeMillis() int64 {
+	currentTime := time.Now()
+	nextMorning := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(),
+		currentTime.Hour()+1, 0, 0, 0, currentTime.Location())
+
+	nextMorningTimeMillis := nextMorning.UnixNano() / int64(time.Millisecond)
+	return nextMorningTimeMillis
+}

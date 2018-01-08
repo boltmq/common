@@ -13,14 +13,42 @@
 // limitations under the License.
 package basis
 
-const (
-	MASTER_ID                = 0
-	SELF_TEST_TOPIC          = "SELF_TEST_TOPIC"
-	DEFAULT_TOPIC            = "MY_DEFAULT_TOPIC"
-	BENCHMARK_TOPIC          = "BenchmarkTest"
-	OFFSET_MOVED_EVENT       = "OFFSET_MOVED_EVENT"
-	TOOLS_CONSUMER_GROUP     = "TOOLS_CONSUMER"
-	FILTERSRV_CONSUMER_GROUP = "FILTERSRV_CONSUMER"
-	SELF_TEST_CONSUMER_GROUP = "SELF_TEST_C_GROUP"
-	RETRY_GROUP_TOPIC_PREFIX = "%RETRY%"
+import (
+	"os"
+	"path/filepath"
 )
+
+func ParentDirectory(dir string) string {
+	return filepath.Dir(dir)
+}
+
+func PathExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
+}
+
+func EnsureDir(dirName string) error {
+	if len(dirName) == 0 {
+		return nil
+	}
+
+	exist, err := PathExists(dirName)
+	if err != nil {
+		return err
+	}
+
+	if !exist {
+		err := os.MkdirAll(dirName, os.ModePerm)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}

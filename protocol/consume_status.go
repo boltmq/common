@@ -11,16 +11,25 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package basis
+package protocol
+
+// ConsumeConcurrentlyStatus: 普通消费状态回执
+// Author: yintongqiang
+// Since:  2017/8/10
+type ConsumeConcurrentlyStatus int
 
 const (
-	MASTER_ID                = 0
-	SELF_TEST_TOPIC          = "SELF_TEST_TOPIC"
-	DEFAULT_TOPIC            = "MY_DEFAULT_TOPIC"
-	BENCHMARK_TOPIC          = "BenchmarkTest"
-	OFFSET_MOVED_EVENT       = "OFFSET_MOVED_EVENT"
-	TOOLS_CONSUMER_GROUP     = "TOOLS_CONSUMER"
-	FILTERSRV_CONSUMER_GROUP = "FILTERSRV_CONSUMER"
-	SELF_TEST_CONSUMER_GROUP = "SELF_TEST_C_GROUP"
-	RETRY_GROUP_TOPIC_PREFIX = "%RETRY%"
+	CONSUME_SUCCESS ConsumeConcurrentlyStatus = iota // Success consumption
+	RECONSUME_LATER                                  // Failure consumption,later try to consume
 )
+
+func (cct ConsumeConcurrentlyStatus) String() string {
+	switch cct {
+	case CONSUME_SUCCESS:
+		return "CONSUME_SUCCESS"
+	case RECONSUME_LATER:
+		return "RECONSUME_LATER"
+	default:
+		return "Unknow"
+	}
+}

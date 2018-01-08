@@ -13,6 +13,57 @@
 // limitations under the License.
 package heartbeat
 
+import (
+	"fmt"
+
+	set "github.com/deckarep/golang-set"
+)
+
+// ConsumerData 消费者
+// Author: yintongqiang
+// Since:  2017/8/8
+type ConsumerData struct {
+	GroupName           string           `json:"groupName"`
+	ConsumeType         ConsumeType      `json:"consumeType"`
+	MessageModel        MessageModel     `json:"messageModel"`
+	ConsumeFromWhere    ConsumeFromWhere `json:"consumeFromWhere"`
+	SubscriptionDataSet set.Set          `json:"subscriptionDataSet"`
+	UnitMode            bool             `json:"unitMode"`
+}
+
+type ConsumerDataPlus struct {
+	GroupName           string                 `json:"groupName"`
+	ConsumeType         ConsumeType            `json:"consumeType"`
+	MessageModel        MessageModel           `json:"messageModel"`
+	ConsumeFromWhere    ConsumeFromWhere       `json:"consumeFromWhere"`
+	SubscriptionDataSet []SubscriptionDataPlus `json:"subscriptionDataSet"`
+	UnitMode            bool                   `json:"unitMode"`
+}
+
+// String 消费者
+// Author: rongzhihong
+// Since:  2017/9/14
+func (cd *ConsumerData) String() string {
+	if cd == nil {
+		return "<nil>"
+	}
+
+	return fmt.Sprintf("ConsumerData [groupName=%s, consumeType=%s, messageModel=%s, consumeFromWhere=%s, unitMode=%s, subscriptionDataSet=%s]",
+		cd.GroupName, cd.ConsumeType, cd.MessageModel, cd.ConsumeFromWhere, cd.UnitMode, cd.SubscriptionDataSet)
+}
+
+// String 格式ConsumerDataPlus信息
+// Author: rongzhihong
+// Since:  2017/9/14
+func (cds *ConsumerDataPlus) String() string {
+	if cds == nil {
+		return "<nil>"
+	}
+
+	return fmt.Sprintf("ConsumerDataPlus [groupName=%s, consumeType=%v, messageModel=%v, consumeFromWhere=%v, unitMode=%v, subscriptionDataSet=%#v]",
+		cds.GroupName, cds.ConsumeType, cds.MessageModel, cds.ConsumeFromWhere, cds.UnitMode, cds.SubscriptionDataSet)
+}
+
 // ConsumeType 消费类型枚举
 // Author: yintongqiang
 // Since:  2017/8/8

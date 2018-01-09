@@ -15,6 +15,10 @@ package system
 
 import "time"
 
+const (
+	TIMEFORMAT = "2006-01-02 15:04:05"
+)
+
 // CurrentTimeMillis 当前时间毫秒数
 // Author rongzhihong
 // Since 2017/9/5
@@ -54,4 +58,12 @@ func ComputNextHourTimeMillis() int64 {
 
 	nextMorningTimeMillis := nextMorning.UnixNano() / int64(time.Millisecond)
 	return nextMorningTimeMillis
+}
+
+// MillsTime2String 将毫秒时间转为字符时间
+// Author: rongzhihong
+// Since: 2017/9/19
+func MilliTime2String(millisecond int64) string {
+	secondTime := millisecond / 1000
+	return time.Unix(secondTime, 0).Format(TIMEFORMAT)
 }

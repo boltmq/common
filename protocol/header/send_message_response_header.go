@@ -11,17 +11,18 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package basis
+package header
 
-const (
-	MASTER_ID                = 0
-	SELF_TEST_TOPIC          = "SELF_TEST_TOPIC"
-	DEFAULT_TOPIC            = "MY_DEFAULT_TOPIC"
-	BENCHMARK_TOPIC          = "BenchmarkTest"
-	OFFSET_MOVED_EVENT       = "OFFSET_MOVED_EVENT"
-	TOOLS_CONSUMER_GROUP     = "TOOLS_CONSUMER"
-	FILTERSRV_CONSUMER_GROUP = "FILTERSRV_CONSUMER"
-	SELF_TEST_CONSUMER_GROUP = "SELF_TEST_C_GROUP"
-	RETRY_GROUP_TOPIC_PREFIX = "%RETRY%"
-	DLQ_GROUP_TOPIC_PREFIX   = "%DLQ%"
-)
+// SendMessageResponseHeader: 发送消息响应头
+// Author: yintongqiang
+// Since:  2017/8/16
+type SendMessageResponseHeader struct {
+	MsgId         string `json:"msgId"`
+	QueueId       int32  `json:"queueId"`
+	QueueOffset   int64  `json:"queueOffset"`
+	TransactionId string `json:"transactionId"`
+}
+
+func (header *SendMessageResponseHeader) CheckFields() error {
+	return nil
+}

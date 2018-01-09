@@ -11,17 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package basis
+package header
 
-const (
-	MASTER_ID                = 0
-	SELF_TEST_TOPIC          = "SELF_TEST_TOPIC"
-	DEFAULT_TOPIC            = "MY_DEFAULT_TOPIC"
-	BENCHMARK_TOPIC          = "BenchmarkTest"
-	OFFSET_MOVED_EVENT       = "OFFSET_MOVED_EVENT"
-	TOOLS_CONSUMER_GROUP     = "TOOLS_CONSUMER"
-	FILTERSRV_CONSUMER_GROUP = "FILTERSRV_CONSUMER"
-	SELF_TEST_CONSUMER_GROUP = "SELF_TEST_C_GROUP"
-	RETRY_GROUP_TOPIC_PREFIX = "%RETRY%"
-	DLQ_GROUP_TOPIC_PREFIX   = "%DLQ%"
-)
+// QueryCorrectionOffsetRequestHeader 查找被修正 offset (转发组件）的请求头
+// Author rongzhihong
+// Since 2017/9/19
+type QueryCorrectionOffsetRequestHeader struct {
+	FilterGroups string `json:"filterGroups"`
+	CompareGroup string `json:"compareGroup"`
+	Topic        string `json:"topic"`
+}
+
+func (header *QueryCorrectionOffsetRequestHeader) CheckFields() error {
+	return nil
+}

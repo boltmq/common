@@ -11,15 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package protocol
+package head
 
-type KVTable struct {
-	Table map[string]string `json:"table"`
+// deleteSubscriptionGroup 删除消费分组的请求头
+// Author rongzhihong
+// Since 2017/9/19
+type DeleteSubscriptionGroupRequestHeader struct {
+	GroupName string
 }
 
-func NewKVTable() *KVTable {
-	kvTable := &KVTable{
-		Table: make(map[string]string),
-	}
-	return kvTable
+func (header *DeleteSubscriptionGroupRequestHeader) CheckFields() error {
+	return nil
 }

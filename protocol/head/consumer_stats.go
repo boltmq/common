@@ -11,24 +11,27 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package body
+package head
 
-import (
-	set "github.com/deckarep/golang-set"
-)
-
-// ProducerConnection 生产者连接
+// GetConsumerStatsRequestHeader 获得消费者统计信息的请求头
 // Author rongzhihong
 // Since 2017/9/19
-type ProducerConnection struct {
-	ConnectionSet set.Set `json:"connectionSet"`
+type GetConsumerStatsRequestHeader struct {
+	Topic         string `json:"topic"`
+	ConsumerGroup string `json:"consumerGroup"`
 }
 
-// NewProducerConnection 初始化
-// Author rongzhihong
-// Since 2017/9/19
-func NewProducerConnection() *ProducerConnection {
-	connect := new(ProducerConnection)
-	connect.ConnectionSet = set.NewSet()
-	return connect
+func (header *GetConsumerStatsRequestHeader) CheckFields() error {
+	return nil
+}
+
+// NewGetConsumerStatsRequestHeader 初始化
+// Author: tianyuliang
+// Since: 2017/11/1
+func NewGetConsumerStatsRequestHeader(consumerGroup, topic string) *GetConsumerStatsRequestHeader {
+	csrh := &GetConsumerStatsRequestHeader{
+		Topic:         topic,
+		ConsumerGroup: consumerGroup,
+	}
+	return csrh
 }

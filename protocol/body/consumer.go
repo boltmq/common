@@ -11,15 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package protocol
+package body
 
-type KVTable struct {
-	Table map[string]string `json:"table"`
+// GetConsumersByGroupResponse: 获取消费者列表
+// Author: yintongqiang
+// Since:  2017/8/23
+type GetConsumersByGroupResponse struct {
+	ConsumerIdList []string `json:"consumerIdList"`
 }
 
-func NewKVTable() *KVTable {
-	kvTable := &KVTable{
-		Table: make(map[string]string),
-	}
-	return kvTable
+func (header *GetConsumersByGroupResponse) CheckFields() error {
+	return nil
 }

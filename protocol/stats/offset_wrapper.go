@@ -11,15 +11,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package protocol
+package stats
 
-type KVTable struct {
-	Table map[string]string `json:"table"`
-}
-
-func NewKVTable() *KVTable {
-	kvTable := &KVTable{
-		Table: make(map[string]string),
-	}
-	return kvTable
+// OffsetWrapper 偏移量封装类
+// Author rongzhihong
+// Since 2017/9/19
+type OffsetWrapper struct {
+	BrokerOffset   int64 `json:"brokerOffset"`
+	ConsumerOffset int64 `json:"consumerOffset"`
+	LastTimestamp  int64 `json:"lastTimestamp"`
 }

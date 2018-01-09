@@ -11,15 +11,26 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package protocol
+package stats
 
-type KVTable struct {
-	Table map[string]string `json:"table"`
+import "fmt"
+
+type TopicOffset struct {
+	MinOffset           int64 `json:"minOffset"`
+	MaxOffset           int64 `json:"maxOffset"`
+	LastUpdateTimestamp int64 `json:"lastUpdateTimestamp"`
 }
 
-func NewKVTable() *KVTable {
-	kvTable := &KVTable{
-		Table: make(map[string]string),
+func NewTopicOffset() *TopicOffset {
+	topicOffset := new(TopicOffset)
+	return topicOffset
+}
+
+func (to *TopicOffset) ToString() string {
+	if to == nil {
+		return "<nil>"
 	}
-	return kvTable
+
+	return fmt.Sprintf("{minOffset=%d, maxOffset=%d, lastUpdateTimestamp=%d}",
+		to.MinOffset, to.MaxOffset, to.LastUpdateTimestamp)
 }

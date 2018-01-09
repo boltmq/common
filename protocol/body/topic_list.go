@@ -14,8 +14,7 @@
 package body
 
 import (
-	"github.com/boltmq/common/protocol"
-	"github.com/boltmq/common/protocol/route"
+	"github.com/boltmq/common/protocol/base"
 	set "github.com/deckarep/golang-set"
 )
 
@@ -25,7 +24,6 @@ import (
 type TopicList struct {
 	TopicList  set.Set `json:"topicList"`  // topic列表
 	BrokerAddr string  `json:"brokerAddr"` // broker地址
-	protocol.RemotingSerializable
 }
 
 // NewTopicList 初始化
@@ -42,11 +40,10 @@ func NewTopicList() *TopicList {
 // Author: tianyuliang, <tianyuliang@gome.com.cn>
 // Since: 2017/9/16
 type TopicPlusList struct {
-	TopicList        []string                      `json:"topicList"`        // topic列表
-	BrokerAddr       string                        `json:"brokerAddr"`       // broker地址
-	TopicQueueTable  map[string][]*route.QueueData `json:"topicQueueTable"`  // 额外增加字段 topic<*route.QueueData>
-	ClusterAddrTable map[string][]string           `json:"clusterAddrTable"` // clusterName[set<brokerName>]
-	protocol.RemotingSerializable
+	TopicList        []string                     `json:"topicList"`        // topic列表
+	BrokerAddr       string                       `json:"brokerAddr"`       // broker地址
+	TopicQueueTable  map[string][]*base.QueueData `json:"topicQueueTable"`  // 额外增加字段 topic<*route.QueueData>
+	ClusterAddrTable map[string][]string          `json:"clusterAddrTable"` // clusterName[set<brokerName>]
 }
 
 // NewTopicPlusList 初始化
@@ -55,7 +52,7 @@ type TopicPlusList struct {
 func NewTopicPlusList() *TopicPlusList {
 	topicPlusList := &TopicPlusList{
 		TopicList:        make([]string, 0),
-		TopicQueueTable:  make(map[string][]*route.QueueData),
+		TopicQueueTable:  make(map[string][]*base.QueueData),
 		ClusterAddrTable: make(map[string][]string),
 	}
 	return topicPlusList
@@ -81,7 +78,7 @@ type TopicBrokerClusterWapper struct {
 	TpUpdateConfigWapper *TopicUpdateConfigWapper `json:"topicConfig"`
 }
 
-func NewTopicBrokerClusterWapper(clusterName, topicName string, queueData *route.QueueData) *TopicBrokerClusterWapper {
+func NewTopicBrokerClusterWapper(clusterName, topicName string, queueData *base.QueueData) *TopicBrokerClusterWapper {
 	topicBrokerClusterWapper := &TopicBrokerClusterWapper{
 		ClusterName:          clusterName,
 		TopicName:            topicName,
@@ -90,7 +87,7 @@ func NewTopicBrokerClusterWapper(clusterName, topicName string, queueData *route
 	return topicBrokerClusterWapper
 }
 
-func NewTopicUpdateConfigWapper(clusterName, topicName string, queueData *route.QueueData) *TopicUpdateConfigWapper {
+func NewTopicUpdateConfigWapper(clusterName, topicName string, queueData *base.QueueData) *TopicUpdateConfigWapper {
 	topicUpdateConfig := &TopicUpdateConfigWapper{
 		ClusterName:    clusterName,
 		TopicName:      topicName,

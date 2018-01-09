@@ -11,15 +11,16 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package protocol
+package head
 
-type KVTable struct {
-	Table map[string]string `json:"table"`
+// ViewBrokerStatsDataRequestHeader 查看Broker统计信息的请求头
+// Author rongzhihong
+// Since 2017/9/19
+type ViewBrokerStatsDataRequestHeader struct {
+	StatsName string `json:"statsName"`
+	StatsKey  string `json:"statsKey"`
 }
 
-func NewKVTable() *KVTable {
-	kvTable := &KVTable{
-		Table: make(map[string]string),
-	}
-	return kvTable
+func (header *ViewBrokerStatsDataRequestHeader) CheckFields() error {
+	return nil
 }

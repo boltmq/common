@@ -11,24 +11,24 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package namesrv
+package subscription
 
 import (
+	"github.com/boltmq/common/basis"
 	concurrent "github.com/fanliao/go-concurrentMap"
 )
 
-// ConsumerOffsetSerializeWrapper Consumer消费进度，序列化包装
+// SubscriptionGroupWrapper 订阅组配置，序列化包装
 // Author gaoyanlei
 // Since 2017/8/22
-type ConsumerOffsetSerializeWrapper struct {
-	OffsetTable *concurrent.ConcurrentMap `json:"offsetTable"` // key topic@group value:map[int]int64
+type SubscriptionGroupWrapper struct {
+	SubscriptionGroupTable *concurrent.ConcurrentMap `json:"subscriptionGroupTable"`
+	DataVersion            basis.DataVersion         `json:"dataVersion"`
 }
 
-// NewConsumerOffsetSerializeWrapper 初始化
-// Author gaoyanlei
-// Since 2017/8/22
-func NewConsumerOffsetSerializeWrapper() *ConsumerOffsetSerializeWrapper {
-	wrapper := new(ConsumerOffsetSerializeWrapper)
-	wrapper.OffsetTable = concurrent.NewConcurrentMap()
+func NewSubscriptionGroupWrapper() *SubscriptionGroupWrapper {
+	wrapper := new(SubscriptionGroupWrapper)
+	wrapper.SubscriptionGroupTable = concurrent.NewConcurrentMap()
+	wrapper.DataVersion = *basis.NewDataVersion()
 	return wrapper
 }

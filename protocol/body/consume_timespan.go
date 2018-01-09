@@ -11,15 +11,19 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package protocol
+package body
 
-type KVTable struct {
-	Table map[string]string `json:"table"`
+import set "github.com/deckarep/golang-set"
+
+// QueryConsumeTimeSpan 查询消费时间跨度
+// Author rongzhihong
+// Since 2017/9/19
+type QueryConsumeTimeSpan struct {
+	ConsumeTimeSpanSet set.Set `json:"consumeTimeSpanSet"`
 }
 
-func NewKVTable() *KVTable {
-	kvTable := &KVTable{
-		Table: make(map[string]string),
-	}
-	return kvTable
+func NewQueryConsumeTimeSpan() *QueryConsumeTimeSpan {
+	body := new(QueryConsumeTimeSpan)
+	body.ConsumeTimeSpanSet = set.NewSet()
+	return body
 }

@@ -16,7 +16,6 @@ package body
 import (
 	"fmt"
 
-	"github.com/boltmq/common/protocol"
 	"github.com/boltmq/common/protocol/heartbeat"
 	set "github.com/deckarep/golang-set"
 	concurrent "github.com/fanliao/go-concurrentMap"
@@ -66,7 +65,6 @@ type ConsumerConnection struct {
 	ConsumeType       heartbeat.ConsumeType      `json:"consumeType"`
 	MessageModel      heartbeat.MessageModel     `json:"messageModel"`
 	ConsumeFromWhere  heartbeat.ConsumeFromWhere `json:"consumeFromWhere"`
-	protocol.RemotingSerializable
 }
 
 // ConsumerConnectionPlus 消费者连接信息(处理set集合无法反序列化问题)
@@ -78,7 +76,6 @@ type ConsumerConnectionPlus struct {
 	ConsumeType       heartbeat.ConsumeType                      `json:"consumeType"`
 	MessageModel      heartbeat.MessageModel                     `json:"messageModel"`
 	ConsumeFromWhere  heartbeat.ConsumeFromWhere                 `json:"consumeFromWhere"`
-	protocol.RemotingSerializable
 }
 
 // NewConsumerConnection 初始化
@@ -96,12 +93,11 @@ func NewConsumerConnectionPlus() *ConsumerConnectionPlus {
 // Since: 2017/11/13
 func (plus *ConsumerConnectionPlus) ToConsumerConnection() *ConsumerConnection {
 	consumerConnection := &ConsumerConnection{
-		SubscriptionTable:    concurrent.NewConcurrentMap(),
-		ConsumeType:          plus.ConsumeType,
-		MessageModel:         plus.MessageModel,
-		ConsumeFromWhere:     plus.ConsumeFromWhere,
-		RemotingSerializable: plus.RemotingSerializable,
-		ConnectionSet:        set.NewSet(),
+		SubscriptionTable: concurrent.NewConcurrentMap(),
+		ConsumeType:       plus.ConsumeType,
+		MessageModel:      plus.MessageModel,
+		ConsumeFromWhere:  plus.ConsumeFromWhere,
+		ConnectionSet:     set.NewSet(),
 	}
 
 	if plus.SubscriptionTable != nil {

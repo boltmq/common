@@ -11,15 +11,19 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package protocol
+package body
 
-type KVTable struct {
-	Table map[string]string `json:"table"`
+import "github.com/boltmq/common/message"
+
+// ResetOffset 重置偏移量的body
+// Author rongzhihong
+// Since 2017/9/18
+type ResetOffset struct {
+	OffsetTable map[*message.MessageQueue]int64 `json:"offsetTable"`
 }
 
-func NewKVTable() *KVTable {
-	kvTable := &KVTable{
-		Table: make(map[string]string),
-	}
-	return kvTable
+func NewResetOffset() *ResetOffset {
+	body := new(ResetOffset)
+	body.OffsetTable = make(map[*message.MessageQueue]int64)
+	return body
 }

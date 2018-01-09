@@ -11,24 +11,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package namesrv
+package body
 
-import (
-	concurrent "github.com/fanliao/go-concurrentMap"
-)
+import "github.com/boltmq/common/protocol/base"
 
-// ConsumerOffsetSerializeWrapper Consumer消费进度，序列化包装
+// RegisterBrokerRequest 注册Broker-请求/响应体
 // Author gaoyanlei
 // Since 2017/8/22
-type ConsumerOffsetSerializeWrapper struct {
-	OffsetTable *concurrent.ConcurrentMap `json:"offsetTable"` // key topic@group value:map[int]int64
+type RegisterBrokerRequest struct {
+	TpConfigSerializeWrapper *base.TopicConfigSerializeWrapper `json:"topicConfigSerializeWrapper"`
+	FilterServerList         []string                          `json:"filterServerList"`
 }
 
-// NewConsumerOffsetSerializeWrapper 初始化
-// Author gaoyanlei
-// Since 2017/8/22
-func NewConsumerOffsetSerializeWrapper() *ConsumerOffsetSerializeWrapper {
-	wrapper := new(ConsumerOffsetSerializeWrapper)
-	wrapper.OffsetTable = concurrent.NewConcurrentMap()
-	return wrapper
+func NewRegisterBrokerRequest(topicConfigWrapper *base.TopicConfigSerializeWrapper, filterServerList []string) *RegisterBrokerRequest {
+	body := new(RegisterBrokerRequest)
+	body.FilterServerList = filterServerList
+	body.TpConfigSerializeWrapper = topicConfigWrapper
+	return body
 }

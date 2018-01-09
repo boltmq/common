@@ -11,24 +11,27 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package body
+package head
 
-import (
-	set "github.com/deckarep/golang-set"
-)
-
-// ProducerConnection 生产者连接
+// RegisterFilterServerRequestHeader 注册过滤器的请求头
 // Author rongzhihong
 // Since 2017/9/19
-type ProducerConnection struct {
-	ConnectionSet set.Set `json:"connectionSet"`
+type RegisterFilterServerRequestHeader struct {
+	FilterServerAddr string `json:"filterServerAddr"`
 }
 
-// NewProducerConnection 初始化
+func (header *RegisterFilterServerRequestHeader) CheckFields() error {
+	return nil
+}
+
+// RegisterFilterServerResponseHeader 注册过滤器的返回头
 // Author rongzhihong
 // Since 2017/9/19
-func NewProducerConnection() *ProducerConnection {
-	connect := new(ProducerConnection)
-	connect.ConnectionSet = set.NewSet()
-	return connect
+type RegisterFilterServerResponseHeader struct {
+	BrokerName string `json:"brokerName"`
+	BrokerId   int64  `json:"brokerId"`
+}
+
+func (header *RegisterFilterServerResponseHeader) CheckFields() error {
+	return nil
 }

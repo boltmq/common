@@ -24,7 +24,7 @@ import (
 // Author: yintongqiang
 // Since:  2017/8/9
 type SubscriptionData struct {
-	SUB_ALL         string  `json:"-"`
+	SubAll          string  `json:"-"`
 	ClassFilterMode bool    `json:"classFilterMode"`
 	Topic           string  `json:"topic"`
 	SubString       string  `json:"subString"`
@@ -34,7 +34,7 @@ type SubscriptionData struct {
 }
 
 type SubscriptionDataPlus struct {
-	SUB_ALL         string   `json:"-"`
+	SubAll          string   `json:"-"`
 	ClassFilterMode bool     `json:"classFilterMode"`
 	Topic           string   `json:"topic"`
 	SubString       string   `json:"subString"`
@@ -48,10 +48,10 @@ type SubscriptionDataPlus struct {
 // Since: 2017/11/6
 func (sd *SubscriptionData) String() string {
 	if sd == nil {
-		return "SubscriptionData is nil"
+		return "<nil>"
 	}
-	format := "SubscriptionData {topic=%s, subString=%s, tagsSet=%s, codeSet=%s, subVersion=%d, classFilterMode=%t}"
-	return fmt.Sprintf(format, sd.Topic, sd.SubString, sd.TagsSet.String(), sd.CodeSet.String(), sd.SubVersion, sd.ClassFilterMode)
+	return fmt.Sprintf("SubscriptionData {topic=%s, subString=%s, tagsSet=%s, codeSet=%s, subVersion=%d, classFilterMode=%t}",
+		sd.Topic, sd.SubString, sd.TagsSet.String(), sd.CodeSet.String(), sd.SubVersion, sd.ClassFilterMode)
 }
 
 // String 格式化订阅信息结构体的内容
@@ -59,10 +59,10 @@ func (sd *SubscriptionData) String() string {
 // Since: 2017/11/6
 func (sdp *SubscriptionDataPlus) String() string {
 	if sdp == nil {
-		return "SubscriptionDataPlus is nil"
+		return "<nil>"
 	}
 
 	tags := strings.Join(sdp.TagsSet, ",")
-	format := "SubscriptionDataPlus {Topic=%s, SubString=%s, TagsSet=[%s], CodeSet=[%v], SubVersion=%d, ClassFilterMode=%t}"
-	return fmt.Sprintf(format, sdp.Topic, sdp.SubString, tags, sdp.CodeSet, sdp.SubVersion, sdp.ClassFilterMode)
+	return fmt.Sprintf("SubscriptionDataPlus {Topic=%s, SubString=%s, TagsSet=[%s], CodeSet=[%v], SubVersion=%d, ClassFilterMode=%t}",
+		sdp.Topic, sdp.SubString, tags, sdp.CodeSet, sdp.SubVersion, sdp.ClassFilterMode)
 }

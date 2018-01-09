@@ -16,7 +16,6 @@ package body
 import (
 	"fmt"
 
-	"github.com/boltmq/common/protocol"
 	set "github.com/deckarep/golang-set"
 )
 
@@ -25,7 +24,6 @@ import (
 // Since 2017/9/19
 type GroupList struct {
 	GroupList set.Set `json:"groupList"`
-	protocol.RemotingSerializable
 }
 
 // NewGroupList 初始化

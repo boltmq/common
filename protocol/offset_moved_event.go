@@ -22,7 +22,6 @@ type OffsetMovedEvent struct {
 	MessageQueue  message.MessageQueue `json:"messageQueue"`  // 消息Queue
 	OffsetRequest int64                `json:"offsetRequest"` // 客户端请求的Offset
 	OffsetNew     int64                `json:"offsetNew"`     // Broker要求从这个新的Offset开始消费
-	RemotingSerializable
 }
 
 func NewOffsetMovedEvent() *OffsetMovedEvent {

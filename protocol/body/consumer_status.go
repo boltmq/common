@@ -14,21 +14,20 @@
 package body
 
 import (
-	set "github.com/deckarep/golang-set"
+	"github.com/boltmq/common/message"
 )
 
-// ProducerConnection 生产者连接
+// GetConsumerStatus  获得消费状态的body
 // Author rongzhihong
 // Since 2017/9/19
-type ProducerConnection struct {
-	ConnectionSet set.Set `json:"connectionSet"`
+type GetConsumerStatus struct {
+	MessageQueueTable map[*message.MessageQueue]int64            `json:"messageQueueTable"`
+	ConsumerTable     map[string]map[*message.MessageQueue]int64 `json:"consumerTable"`
 }
 
-// NewProducerConnection 初始化
-// Author rongzhihong
-// Since 2017/9/19
-func NewProducerConnection() *ProducerConnection {
-	connect := new(ProducerConnection)
-	connect.ConnectionSet = set.NewSet()
-	return connect
+func NewGetConsumerStatus() *GetConsumerStatus {
+	body := new(GetConsumerStatus)
+	body.MessageQueueTable = make(map[*message.MessageQueue]int64)
+	body.ConsumerTable = make(map[string]map[*message.MessageQueue]int64)
+	return body
 }

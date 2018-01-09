@@ -11,15 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package protocol
+package head
 
-type KVTable struct {
-	Table map[string]string `json:"table"`
+// UnRegisterClientRequestHeader: 注销客户端
+// Author: yintongqiang
+// Since:  2017/8/17
+type UnRegisterClientRequestHeader struct {
+	ClientID      string `json:"clientID"`
+	ProducerGroup string `json:"producerGroup"`
+	ConsumerGroup string `json:"consumerGroup"`
 }
 
-func NewKVTable() *KVTable {
-	kvTable := &KVTable{
-		Table: make(map[string]string),
-	}
-	return kvTable
+func (header *UnRegisterClientRequestHeader) CheckFields() error {
+	return nil
 }

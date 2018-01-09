@@ -11,24 +11,27 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package body
+package head
 
-import (
-	set "github.com/deckarep/golang-set"
-)
-
-// ProducerConnection 生产者连接
+// GetEarliestMsgStoretimeResponseHeader 获得早期消息存储时间的返回头
 // Author rongzhihong
 // Since 2017/9/19
-type ProducerConnection struct {
-	ConnectionSet set.Set `json:"connectionSet"`
+type GetEarliestMsgStoretimeResponseHeader struct {
+	Timestamp int64
 }
 
-// NewProducerConnection 初始化
+func (header *GetEarliestMsgStoretimeResponseHeader) CheckFields() error {
+	return nil
+}
+
+// GetEarliestMsgStoretimeRequestHeader 获得早期消息存储时间的请求头
 // Author rongzhihong
 // Since 2017/9/19
-func NewProducerConnection() *ProducerConnection {
-	connect := new(ProducerConnection)
-	connect.ConnectionSet = set.NewSet()
-	return connect
+type GetEarliestMsgStoretimeRequestHeader struct {
+	Topic   string
+	QueueId int32
+}
+
+func (header *GetEarliestMsgStoretimeRequestHeader) CheckFields() error {
+	return nil
 }

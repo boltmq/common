@@ -14,8 +14,8 @@
 package body
 
 import (
-	"github.com/boltmq/boltmq/stgcommon/protocol/route"
 	"github.com/boltmq/common/protocol"
+	"github.com/boltmq/common/protocol/route"
 	set "github.com/deckarep/golang-set"
 )
 

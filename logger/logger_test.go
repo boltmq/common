@@ -50,3 +50,29 @@ func TestFileLog(t *testing.T) {
 	Errorf("this is a %s", "test")
 	Fatalf("this is a %s", "test")
 }
+
+var frontLogConfig = `
+<seelog>
+    <outputs>
+        <console/>
+    </outputs>
+</seelog>
+`
+
+func TestBytesLog(t *testing.T) {
+	ConfigAsBytes([]byte(frontLogConfig))
+
+	Trace("this is a test")
+	Debug("this is a test")
+	Info("this is a test")
+	Warn("this is a test")
+	Error("this is a test")
+	Fatal("this is a test")
+
+	Tracef("this is a %s", "test")
+	Debugf("this is a %s", "test")
+	Infof("this is a %s", "test")
+	Warnf("this is a %s", "test")
+	Errorf("this is a %s", "test")
+	Fatalf("this is a %s", "test")
+}

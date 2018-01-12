@@ -90,3 +90,14 @@ func ConfigAsFile(filename string) error {
 	seelog.ReplaceLogger(logger)
 	return nil
 }
+
+// ConfigAsBytes 配置内容
+func ConfigAsBytes(data []byte) error {
+	logger, err := seelog.LoggerFromConfigAsBytes(data)
+	if err != nil {
+		return err
+	}
+
+	seelog.ReplaceLogger(logger)
+	return nil
+}

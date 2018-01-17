@@ -18,7 +18,7 @@ import (
 	"strings"
 
 	"github.com/boltmq/common/utils/verify"
-	"github.com/juju/errors"
+	"github.com/go-errors/errors"
 )
 
 // UnRegisterBrokerRequestHeader 注销broker-请求头信息

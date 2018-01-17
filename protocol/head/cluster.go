@@ -16,7 +16,7 @@ package head
 import (
 	"strings"
 
-	"github.com/juju/errors"
+	"github.com/go-errors/errors"
 )
 
 type GetTopicsByClusterRequestHeader struct {

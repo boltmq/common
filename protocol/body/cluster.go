@@ -21,7 +21,7 @@ import (
 )
 
 // ClusterInfo 协议中传输对象，内容为集群信息
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/9/4
 type ClusterInfo struct {
 	BrokerAddrTable  map[string]*base.BrokerData `json:"brokerAddrTable"`  // brokerName[BrokerData]
@@ -32,7 +32,7 @@ type ClusterInfo struct {
 //
 // 注意: set.Set类型在反序列化过程无法解析，因此额外设置ClusterPlusInfo类型来解析
 //
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/9/4
 type ClusterPlusInfo struct {
 	BrokerAddrTable  map[string]*base.BrokerData `json:"brokerAddrTable"`  // brokerName[BrokerData]
@@ -40,7 +40,7 @@ type ClusterPlusInfo struct {
 }
 
 // ClusterBrokerInfo cluster与broker包装器
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/15
 type ClusterBrokerWapper struct {
 	ClusterName string `json:"clusterName"`
@@ -50,7 +50,7 @@ type ClusterBrokerWapper struct {
 }
 
 // NewClusterBrokerWapper 初始化
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/15
 func NewClusterBrokerWapper(clusterName, brokerName, brokerAddr string, brokerId int) *ClusterBrokerWapper {
 	clusterBrokerWapper := &ClusterBrokerWapper{
@@ -63,7 +63,7 @@ func NewClusterBrokerWapper(clusterName, brokerName, brokerAddr string, brokerId
 }
 
 // String 格式化ClusterBrokerWapper数据
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/15
 func (wapper *ClusterBrokerWapper) String() string {
 	return fmt.Sprintf("ClusterBrokerWapper {clusterName=%s, brokerName=%s, brokerAddr=%s, brokerId=%d}",
@@ -71,7 +71,7 @@ func (wapper *ClusterBrokerWapper) String() string {
 }
 
 // NewClusterInfo 初始化
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/9/4
 func NewClusterInfo() *ClusterInfo {
 	clusterInfo := &ClusterInfo{
@@ -82,7 +82,7 @@ func NewClusterInfo() *ClusterInfo {
 }
 
 // NewClusterPlusInfo 初始化
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/9/4
 func NewClusterPlusInfo() *ClusterPlusInfo {
 	clusterPlusInfo := &ClusterPlusInfo{
@@ -93,7 +93,7 @@ func NewClusterPlusInfo() *ClusterPlusInfo {
 }
 
 // String 格式化
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/15
 func (plus *ClusterPlusInfo) String() string {
 	if plus == nil {
@@ -104,7 +104,7 @@ func (plus *ClusterPlusInfo) String() string {
 }
 
 // RetrieveAllClusterNames 处理所有brokerName名称
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/9/4
 func (ci *ClusterInfo) RetrieveAllClusterNames() []string {
 	if ci.ClusterAddrTable == nil || len(ci.ClusterAddrTable) == 0 {
@@ -124,7 +124,7 @@ func (ci *ClusterInfo) RetrieveAllClusterNames() []string {
 }
 
 // RetrieveAllAddrByCluster 处理所有brokerAddr地址
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/9/4
 func (ci *ClusterInfo) RetrieveAllAddrByCluster(clusterName string) []string {
 	if ci.ClusterAddrTable == nil || len(ci.ClusterAddrTable) == 0 {
@@ -149,7 +149,7 @@ func (ci *ClusterInfo) RetrieveAllAddrByCluster(clusterName string) []string {
 }
 
 // RetrieveAllAddrByCluster 处理所有brokerAddr地址
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/9/4
 func (cpi *ClusterPlusInfo) RetrieveAllAddrByCluster(clusterName string) ([]string, []*ClusterBrokerWapper) {
 	clusterBrokerWappers := make([]*ClusterBrokerWapper, 0)
@@ -175,7 +175,7 @@ func (cpi *ClusterPlusInfo) RetrieveAllAddrByCluster(clusterName string) ([]stri
 }
 
 // RetrieveAllAddrByCluster 处理所有brokerAddr地址
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/9/4
 func (cpi *ClusterPlusInfo) ResolveClusterBrokerWapper() ([]string, []*ClusterBrokerWapper) {
 	clusterBrokerWappers := make([]*ClusterBrokerWapper, 0)
@@ -202,7 +202,7 @@ func (cpi *ClusterPlusInfo) ResolveClusterBrokerWapper() ([]string, []*ClusterBr
 }
 
 // ClusterInfo 转化为 ClusterInfo 类型
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/8
 func (plus *ClusterPlusInfo) ClusterInfo() *ClusterInfo {
 	if plus == nil {
@@ -227,7 +227,7 @@ func (plus *ClusterPlusInfo) ClusterInfo() *ClusterInfo {
 }
 
 // RetrieveAllClusterNames 处理所有brokerName名称
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/9/4
 func (cpi *ClusterPlusInfo) RetrieveAllClusterNames() []string {
 	if cpi.ClusterAddrTable == nil || len(cpi.ClusterAddrTable) == 0 {

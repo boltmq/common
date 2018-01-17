@@ -32,7 +32,7 @@ type Connection struct {
 }
 
 // NewConnection 初始化Connection
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/16
 func NewConnection(clientId, clientAddr, language string, version int32) *Connection {
 	conn := &Connection{
@@ -45,7 +45,7 @@ func NewConnection(clientId, clientAddr, language string, version int32) *Connec
 }
 
 // String 格式化Connection结构体的数据
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/16
 func (conn *Connection) String() string {
 	if conn == nil {
@@ -89,7 +89,7 @@ func NewConsumerConnectionPlus() *ConsumerConnectionPlus {
 }
 
 // ToConsumerConnection 转化为ConsumerConnection
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/13
 func (plus *ConsumerConnectionPlus) ToConsumerConnection() *ConsumerConnection {
 	consumerConnection := &ConsumerConnection{

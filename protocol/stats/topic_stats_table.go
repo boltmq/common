@@ -53,7 +53,7 @@ func NewTopicStatsTablePlus() *TopicStatsTablePlus {
 }
 
 // String 格式化TopicStatsTablePlus内容
-// Author: tianyuliang, <tianyuliang@gome.com.cn>
+// Author: tianyuliang
 // Since: 2017/11/9
 func (plus *TopicStatsTablePlus) String() string {
 	if plus == nil || plus.OffsetTable == nil {

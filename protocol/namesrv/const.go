@@ -11,25 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package head
+package namesrv
 
-// GetTopicStatsInfoRequestHeader 获得Topic统计信息的请求头
-// Author rongzhihong
-// Since 2017/9/19
-type GetTopicStatsInfoRequestHeader struct {
-	Topic string `json:"topic"`
-}
-
-func (header *GetTopicStatsInfoRequestHeader) CheckFields() error {
-	return nil
-}
-
-// NewGetTopicStatsInfoRequestHeader 初始化
-// Author: tianyuliang
-// Since: 2017/11/6
-func NewGetTopicStatsInfoRequestHeader(topic string) *GetTopicStatsInfoRequestHeader {
-	header := &GetTopicStatsInfoRequestHeader{
-		Topic: topic,
-	}
-	return header
-}
+const (
+	NAMESPACE_ORDER_TOPIC_CONFIG = "ORDER_TOPIC_CONFIG" // namesrv维护顺序Topic的命名空间
+	NAMESPACE_PROJECT_CONFIG     = "PROJECT_CONFIG"     // broker注册过程，传递正常Topic的命名空间
+)

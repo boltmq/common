@@ -16,8 +16,8 @@ package base
 import (
 	"fmt"
 
-	"github.com/boltmq/boltmq/net/core"
 	"github.com/boltmq/common/basis"
+	"github.com/boltmq/common/net/core"
 	"github.com/boltmq/common/utils/system"
 )
 

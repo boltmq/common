@@ -14,7 +14,6 @@
 package heartbeat
 
 import (
-	set "github.com/deckarep/golang-set"
 	"github.com/pquerna/ffjson/ffjson"
 )
 
@@ -22,9 +21,9 @@ import (
 // Author: yintongqiang
 // Since:  2017/8/8
 type HeartbeatData struct {
-	ClientID        string  `json:"clientID"`
-	ProducerDataSet set.Set `json:"producerDataSet"`
-	ConsumerDataSet set.Set `json:"consumerDataSet"`
+	ClientID      string         `json:"clientID"`
+	ProducerDatas []ProducerData `json:"producerDataSet"`
+	ConsumerDatas []ConsumerData `json:"consumerDataSet"`
 }
 
 // ProducerData 生产者心跳信息
@@ -44,10 +43,7 @@ type HeartbeatDataPlus struct {
 // Author: rongzhihong
 // Since:  2017/9/21
 func NewHeartbeatData() *HeartbeatData {
-	heartbeatData := new(HeartbeatData)
-	heartbeatData.ConsumerDataSet = set.NewSet()
-	heartbeatData.ProducerDataSet = set.NewSet()
-	return heartbeatData
+	return &HeartbeatData{}
 }
 
 func (heartbeatData *HeartbeatData) Encode() []byte {

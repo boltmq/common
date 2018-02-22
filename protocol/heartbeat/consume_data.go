@@ -15,20 +15,18 @@ package heartbeat
 
 import (
 	"fmt"
-
-	set "github.com/deckarep/golang-set"
 )
 
 // ConsumerData 消费者
 // Author: yintongqiang
 // Since:  2017/8/8
 type ConsumerData struct {
-	GroupName           string           `json:"groupName"`
-	ConsumeType         ConsumeType      `json:"consumeType"`
-	MessageModel        MessageModel     `json:"messageModel"`
-	ConsumeFromWhere    ConsumeFromWhere `json:"consumeFromWhere"`
-	SubscriptionDataSet set.Set          `json:"subscriptionDataSet"`
-	UnitMode            bool             `json:"unitMode"`
+	GroupName         string             `json:"groupName"`
+	ConsumeType       ConsumeType        `json:"consumeType"`
+	MessageModel      MessageModel       `json:"messageModel"`
+	ConsumeFromWhere  ConsumeFromWhere   `json:"consumeFromWhere"`
+	SubscriptionDatas []SubscriptionData `json:"subscriptionDataSet"`
+	UnitMode          bool               `json:"unitMode"`
 }
 
 type ConsumerDataPlus struct {
@@ -49,7 +47,7 @@ func (cd *ConsumerData) String() string {
 	}
 
 	return fmt.Sprintf("ConsumerData [groupName=%s, consumeType=%s, messageModel=%s, consumeFromWhere=%s, unitMode=%s, subscriptionDataSet=%s]",
-		cd.GroupName, cd.ConsumeType, cd.MessageModel, cd.ConsumeFromWhere, cd.UnitMode, cd.SubscriptionDataSet)
+		cd.GroupName, cd.ConsumeType, cd.MessageModel, cd.ConsumeFromWhere, cd.UnitMode, cd.SubscriptionDatas)
 }
 
 // String 格式ConsumerDataPlus信息

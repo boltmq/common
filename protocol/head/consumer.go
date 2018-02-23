@@ -13,6 +13,8 @@
 // limitations under the License.
 package head
 
+import "fmt"
+
 // GetConsumerStatusRequestHeader 获得消费者状态的请求头
 // Author rongzhihong
 // Since 2017/9/19
@@ -98,4 +100,51 @@ type GetConsumersByGroupRequestHeader struct {
 
 func (header *GetConsumersByGroupRequestHeader) CheckFields() error {
 	return nil
+}
+
+type ConsumeMessageDirectlyResult struct {
+	Order          bool
+	AutoCommit     bool
+	ConsumeResult  CMResult
+	Remark         string
+	SpentTimeMills int64
+}
+
+func (r *ConsumeMessageDirectlyResult) String() string {
+	if r == nil {
+		return "<nil>"
+	}
+
+	return fmt.Sprintf("{Order=%t, AutoCommit=%t, ConsumeResult=%s, SpentTimeMills=%d, Remark=%s}",
+		r.Order, r.AutoCommit, r.ConsumeResult, r.SpentTimeMills, r.Remark)
+}
+
+type CMResult int
+
+const (
+	CR_SUCCESS CMResult = iota
+	CR_LATER
+	CR_ROLLBACK
+	CR_COMMIT
+	CR_THROW_EXCEPTION
+	CR_RETURN_NULL
+)
+
+func (cr CMResult) String() string {
+	switch cr {
+	case CR_SUCCESS:
+		return "CR_SUCCESS"
+	case CR_LATER:
+		return "CR_LATER"
+	case CR_ROLLBACK:
+		return "CR_ROLLBACK"
+	case CR_COMMIT:
+		return "CR_COMMIT"
+	case CR_THROW_EXCEPTION:
+		return "CR_THROW_EXCEPTION"
+	case CR_RETURN_NULL:
+		return "CR_RETURN_NULL"
+	default:
+		return "UnKnown"
+	}
 }

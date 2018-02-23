@@ -30,7 +30,7 @@ const (
 )
 
 type TopicConfig struct {
-	SEPARATOR      string
+	Separator      string
 	TopicName      string                `json:"topicName"`
 	ReadQueueNums  int32                 `json:"readQueueNums"`
 	WriteQueueNums int32                 `json:"writeQueueNums"`
@@ -45,7 +45,7 @@ func NewTopicConfig(topicName string) *TopicConfig {
 		TopicName:      topicName,
 		WriteQueueNums: defaultWriteQueueNums,
 		ReadQueueNums:  defaultReadQueueNums,
-		SEPARATOR:      separator,
+		Separator:      separator,
 		Perm:           perm,
 		TpFilterType:   topicFilterType,
 		TopicSysFlag:   topicSysFlag,
@@ -58,7 +58,7 @@ func NewDefaultTopicConfig(topicName string, readQueueNums, writeQueueNums int32
 		TopicName:      topicName,
 		WriteQueueNums: writeQueueNums,
 		ReadQueueNums:  readQueueNums,
-		SEPARATOR:      separator,
+		Separator:      separator,
 		Perm:           perm,
 		TpFilterType:   filterType,
 		TopicSysFlag:   topicSysFlag,
@@ -71,7 +71,7 @@ func NewCustomTopicConfig(topicName string, readQueueNums, writeQueueNums int32,
 		TopicName:      topicName,
 		WriteQueueNums: writeQueueNums,
 		ReadQueueNums:  readQueueNums,
-		SEPARATOR:      separator,
+		Separator:      separator,
 		Perm:           perm,
 		TopicSysFlag:   topicSysFlag,
 	}

@@ -140,7 +140,7 @@ func (routeData *TopicRouteData) Equals(v interface{}) bool {
 
 func (trd *TopicRouteData) String() string {
 	if trd == nil {
-		return ""
+		return "<nil>"
 	}
 
 	data1 := ""
@@ -176,7 +176,6 @@ func (trd *TopicRouteData) String() string {
 	}
 	filterServerTable := strings.Join(vals, ",")
 
-	format := "TopicRouteData {orderTopicConf=%s, %s, %s, %s}"
-	info := fmt.Sprintf(format, trd.OrderTopicConf, data1, data2, filterServerTable)
-	return info
+	return fmt.Sprintf("TopicRouteData {orderTopicConf=%s, %s, %s, %s}",
+		trd.OrderTopicConf, data1, data2, filterServerTable)
 }

@@ -13,7 +13,20 @@
 // limitations under the License.
 package codec
 
-func HashCode(s string) int64 {
+import "github.com/mitchellh/hashstructure"
+
+func HashCode(v interface{}) int64 {
+	hash, err := hashstructure.Hash(v, nil)
+	if err != nil {
+		if s, ok := v.(string); ok {
+			return hashCode(s)
+		}
+	}
+
+	return int64(hash)
+}
+
+func hashCode(s string) int64 {
 	var h int64
 	for i := 0; i < len(s); i++ {
 		h = 31*h + int64(s[i])

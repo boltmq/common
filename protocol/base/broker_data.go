@@ -17,6 +17,8 @@ import (
 	"fmt"
 	"strings"
 	"sync"
+
+	"github.com/boltmq/common/basis"
 )
 
 type BrokerData struct {
@@ -31,6 +33,27 @@ func NewBrokerData(brokerName string) *BrokerData {
 		BrokerAddrs: make(map[int]string),
 	}
 	return brokerData
+}
+
+func (bd *BrokerData) SelectBrokerAddr() string {
+	value := bd.BrokerAddrs[basis.MASTER_ID]
+	if strings.EqualFold(value, "") {
+		for _, value := range bd.BrokerAddrs {
+			return value
+		}
+	}
+	return value
+}
+
+func (bd *BrokerData) CloneBrokerData() *BrokerData {
+	brokerDataClone := &BrokerData{}
+	brokerDataClone.BrokerName = bd.BrokerName
+	brokerDataClone.BrokerAddrs = make(map[int]string, 0)
+	for k, v := range bd.BrokerAddrs {
+		brokerDataClone.BrokerAddrs[k] = v
+	}
+
+	return brokerDataClone
 }
 
 func (bd *BrokerData) String() string {

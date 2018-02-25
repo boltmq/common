@@ -16,8 +16,6 @@ package base
 import (
 	"fmt"
 	"strings"
-
-	"github.com/boltmq/common/basis"
 )
 
 type QueueData struct {
@@ -95,27 +93,6 @@ func (qd *QueueData) Equals(v interface{}) bool {
 		}
 	}
 	return true
-}
-
-func (qd *BrokerData) SelectBrokerAddr() string {
-	value := qd.BrokerAddrs[basis.MASTER_ID]
-	if strings.EqualFold(value, "") {
-		for _, value := range qd.BrokerAddrs {
-			return value
-		}
-	}
-	return value
-}
-
-func (qd *BrokerData) CloneBrokerData() *BrokerData {
-	brokerDataClone := &BrokerData{}
-	brokerDataClone.BrokerName = qd.BrokerName
-	brokerDataClone.BrokerAddrs = make(map[int]string, 0)
-	for k, v := range qd.BrokerAddrs {
-		brokerDataClone.BrokerAddrs[k] = v
-	}
-
-	return brokerDataClone
 }
 
 type QueueDatas []*QueueData
